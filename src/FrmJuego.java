@@ -1,6 +1,7 @@
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -9,6 +10,8 @@ public class FrmJuego extends JFrame {
     JPanel pnlJugador1, pnlJugador2;
     Jugador jugador1 = new Jugador();
     Jugador jugador2 = new Jugador();
+
+    JTabbedPane tpJugadores;
 
     public FrmJuego(){
         setSize(500, 300);
@@ -24,7 +27,7 @@ public class FrmJuego extends JFrame {
         btnVerificar.setBounds(120,10,100,25);
         add(btnVerificar);
 
-        JTabbedPane tpJugadores = new JTabbedPane();
+        tpJugadores = new JTabbedPane();
         tpJugadores.setBounds(10,50,460,200);
         add(tpJugadores);
         
@@ -43,6 +46,9 @@ public class FrmJuego extends JFrame {
             repartir();
         });
         
+         btnVerificar.addActionListener(e ->{
+            verificar();
+        });
     }
 
     private void repartir(){
@@ -52,6 +58,14 @@ public class FrmJuego extends JFrame {
        jugador1.mostrar(pnlJugador1);
        jugador2.mostrar(pnlJugador2);
        
+    }
+
+    private void verificar(){
+        if (tpJugadores.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(null, jugador1.getGrupos());
+        } else{
+            JOptionPane.showMessageDialog(null, jugador2.getGrupos());
+        }
     }
 
 
